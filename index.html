@@ -1,0 +1,73 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tag List Component</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="css/custom/main.css">
+
+</head>
+
+<body>
+    <!--[if lt IE 9]>
+        <p >You are using an <strong>outdated</strong> browser. Please use IE 9 or above.</p>
+    <![endif]-->
+    <header>
+        <h2 class="compName">Tag List Component</h2>
+        <span class="subhead">Add as many tags as you want</span>
+        <hr>
+    </header>
+
+    <div class="playArea">
+
+        <div class="tag-wrapper">
+            <p class="info">Insert comma, spacebar or enter to create a new tag and press backspace, delete to remove the last tag.</p>
+            <div class="errors">
+                <span id="1">Duplicate</span>
+                <span id="2">Regex validation Failed</span>
+            </div>
+            <div class="tags">
+                <!-- <div class="tag">
+                    <label class="tagText">g.akshayp@gmail.com</label>
+                    <i class="fa fa-close"></i>
+                </div> -->
+                <input type="text" class="emailTag" id="tag_me">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="js/vendor/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/custom/main.js"></script>
+
+    <!-- ******** PLUGIN USAGE ********** -->
+    <script type="text/javascript">
+
+    var myOptions = {
+        allow_duplicate: false,
+        validation_regex: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+        success_callback: function() {
+            $('.errors span').removeClass('active');
+        },
+        error_callback: function(errorCode) { // some error showing logic
+            console.log('in validate');
+            $('.errors span').removeClass('active');
+            $('#' + errorCode).addClass('active');
+        }
+    };
+    $('#tag_me').tagit(myOptions).focus();
+    $('.tags').click(function() {
+        $('#tag_me').focus();
+    });
+    </script>
+
+</body>
+
+</html>
